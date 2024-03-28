@@ -21,23 +21,17 @@
         <header>
           <p class="title">Picked colors</p>
           <span class="clear-all">Clear All</span>
+          <span class="create-palette">Create Palette</span>
         </header>
         <ul class="all-colors"></ul>
-        <!-- <ul class="all-colors">
-          {% for color in pickedColors %}
-          <li class="color">
-            <span class="rect" style="background: {{color}}; border: 1px solid {{ color == 'white' | ternary('#ccc', color) }}"></span>
-            <span class="value hex" data-color="{{color}}" title="{{color}}">{{color}}</span>
-            <span class="icons">
-              <i class="far fa-copy copy-icon" title="Copy"></i>
-              <i class="far fa-trash-alt delete-icon" title="Delete"></i>
-            </span>
-          </li>
-          {% endfor %}
-        </ul>
-               -->
-
+      
       </div>
+
+      <!-- <div class="export-import">
+        <button id="export-btn">Export Selected Colors</button>
+        <input type="file" id="import-input" accept=".json">
+     </div> -->
+
     </div>
   </body>
 </html>
