@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
-    "name": "Color Picker",
-    "description": "A simple color picker extension. Easily pick any color on the screen, view a history of picked colors, and copy or clear them with a single click.",
+    "name": "Hue Hunt - Color Picker",
+    "description": "A fun Chrome extension that simplifies color picking tasks for designers, developers, and anyone seeking inspiration from the colors around them. With Hue Hunt, users can effortlessly capture any color on their screen, view a history of picked colors, and conveniently copy or reset their saved history with a single click.",
     "version": "1.0",
     "action": {
         "default_popup": "index.html"

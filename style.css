@@ -127,3 +127,23 @@ header .clear-all:hover {
 .create-palette:hover {
   color: #143feb;
 }
+
+
+/* Adjust the styling for export and share icons */
+header .export-icon,
+header .share-icon {
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-right: 8px;
+    color: #5372F0;
+}
+
+header .export-icon:hover,
+header .share-icon:hover {
+    color: #143feb;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+}

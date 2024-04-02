@@ -20,9 +20,17 @@
       <div class="picked-colors hide">
         <header>
           <p class="title">Picked colors</p>
-          <span class="clear-all">Clear All</span>
-          <span class="create-palette">Create Palette</span>
-        </header>
+          <span class="clear-all tooltip" title="Clear All">
+              <i class="fas fa-trash"></i>
+          </span>
+          <span class="export-icon tooltip" title="Export">
+              <i class="fas fa-file-export"></i>
+          </span>
+          <span class="share-icon tooltip" title="Share">
+              <i class="fas fa-share-alt"></i>
+          </span>
+      </header>
+      
         <ul class="all-colors"></ul>
       
       </div>
@@ -31,7 +39,15 @@
         <button id="export-btn">Export Selected Colors</button>
         <input type="file" id="import-input" accept=".json">
      </div> -->
+     <div class="gradient-palette"></div>
 
     </div>
+
+    <!-- <div class="palette-section hide">
+      <h2>Palette Name</h2>
+      <input type="text" class="palette-name" value="New Palette">
+      <ul class="palette-colors"></ul>
+    </div> -->
+    
   </body>
 </html>

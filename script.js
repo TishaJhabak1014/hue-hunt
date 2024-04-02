@@ -138,3 +138,42 @@ document.getElementById('import-input').addEventListener('change', (event) => {
     importColors(file);
 });
 
+// mono
+
+// Function to generate a monochromatic gradient palette
+const generateMonochromaticPalette = (color) => {
+    const palette = [];
+    // Lighten and darken the base color to generate the gradient
+    for (let i = 1; i <= 5; i++) {
+        const newColor = Color(color).lighten(i * 5).hex();
+        palette.push(newColor);
+    }
+    return palette;
+}
+//
+// Function to handle click on a color
+const handleColorClick = (color) => {
+    const gradientPalette = generateMonochromaticPalette(color);
+    displayGradientPalette(gradientPalette);
+}
+
+// Event listener for color selection
+document.querySelectorAll('.rect').forEach(colorRect => {
+    colorRect.addEventListener('click', (event) => {
+        const colorValue = event.currentTarget.nextElementSibling.dataset.color;
+        handleColorClick(colorValue);
+    });
+});
+
+// Function to display the generated gradient palette
+const displayGradientPalette = (palette) => {
+    const gradientContainer = document.querySelector('.gradient-palette');
+    gradientContainer.innerHTML = ''; // Clear previous gradient if any
+    palette.forEach((color, index) => {
+        const gradientColor = document.createElement('div');
+        gradientColor.classList.add('gradient-color');
+        gradientColor.style.background = color;
+        gradientColor.innerText = `Color ${index + 1}`;
+        gradientContainer.appendChild(gradientColor);
+    });
+}
