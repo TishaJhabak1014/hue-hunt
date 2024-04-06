@@ -83,97 +83,30 @@ colorPickerBtn.addEventListener("click", activateEyeDropper);
 
 showColor();
 
-// Function to toggle selection of a color
-const toggleSelection = (elem) => {
-    elem.classList.toggle('selected');
-}
-
-// Event listener for color selection
-document.querySelectorAll('.rect').forEach(colorRect => {
-    colorRect.addEventListener('click', (event) => {
-        const colorValue = event.currentTarget.nextElementSibling;
-        toggleSelection(colorValue);
-    });
-});
-
-// Function to export selected colors
+const exportIcon = document.querySelector(".export-icon");
 const exportColors = () => {
-    const selectedColors = pickedColors.filter(color => document.querySelector(`.value[data-color="${color}"]`).classList.contains('selected'));
-    const data = JSON.stringify(selectedColors);
-    const blob = new Blob([data], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'selected_colors.json';
+    // Create an object with keys like "color1", "color2", etc.
+    const colorsObject = {};
+    pickedColors.forEach((color, index) => {
+        colorsObject[`color${index + 1}`] = color;
+    });
+    
+    // Convert the object to a JSON string
+    const jsonColors = JSON.stringify(colorsObject, null, 2); // null, 2 adds indentation for readability
+    
+    // Create a Blob object to store the JSON string
+    const blob = new Blob([jsonColors], { type: "application/json" });
+    
+    // Create a link element to trigger the download
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "picked-colors.json";
+    
+    // Append the link to the body and trigger the download
     document.body.appendChild(a);
     a.click();
-    setTimeout(() => {
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }, 0);
+    document.body.removeChild(a);
 }
 
-// Function to import selected colors from a file
-const importColors = (file) => {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-        const importedColors = JSON.parse(event.target.result);
-        importedColors.forEach(color => {
-            if (!pickedColors.includes(color)) {
-                pickedColors.push(color);
-            }
-        });
-        localStorage.setItem('picked-colors', JSON.stringify(pickedColors));
-        showColor();
-    };
-    reader.readAsText(file);
-}
 
-// Event listener for export button
-document.getElementById('export-btn').addEventListener('click', exportColors);
-
-// Event listener for import input
-document.getElementById('import-input').addEventListener('change', (event) => {
-    const file = event.target.files[0];
-    importColors(file);
-});
-
-// mono
-
-// Function to generate a monochromatic gradient palette
-const generateMonochromaticPalette = (color) => {
-    const palette = [];
-    // Lighten and darken the base color to generate the gradient
-    for (let i = 1; i <= 5; i++) {
-        const newColor = Color(color).lighten(i * 5).hex();
-        palette.push(newColor);
-    }
-    return palette;
-}
-//
-// Function to handle click on a color
-const handleColorClick = (color) => {
-    const gradientPalette = generateMonochromaticPalette(color);
-    displayGradientPalette(gradientPalette);
-}
-
-// Event listener for color selection
-document.querySelectorAll('.rect').forEach(colorRect => {
-    colorRect.addEventListener('click', (event) => {
-        const colorValue = event.currentTarget.nextElementSibling.dataset.color;
-        handleColorClick(colorValue);
-    });
-});
-
-// Function to display the generated gradient palette
-const displayGradientPalette = (palette) => {
-    const gradientContainer = document.querySelector('.gradient-palette');
-    gradientContainer.innerHTML = ''; // Clear previous gradient if any
-    palette.forEach((color, index) => {
-        const gradientColor = document.createElement('div');
-        gradientColor.classList.add('gradient-color');
-        gradientColor.style.background = color;
-        gradientColor.innerText = `Color ${index + 1}`;
-        gradientContainer.appendChild(gradientColor);
-    });
-}
+exportIcon.addEventListener("click", exportColors);
