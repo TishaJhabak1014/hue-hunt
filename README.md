@@ -2,6 +2,7 @@
 
 ## Overview
 Hue Hunt is a fun Chrome extension that simplifies color picking tasks for designers, developers, and anyone seeking inspiration from the colors around them. With Hue Hunt, users can effortlessly capture any color on their screen, view a history of picked colors, and conveniently copy or reset their saved history with a single click.
+Watch a live demo [here](https://drive.google.com/file/d/1VSIjNL4RHVdcjRLKx54cZqa90lmeGOJ6/view?usp=drive_link)!
 
 ## Features
 - **Color Picker**: Easily pick any color on your screen with a simple click.
